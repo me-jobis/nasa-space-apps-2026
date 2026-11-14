@@ -1,0 +1,229 @@
+/* 
+ * NASA Space Apps Challenge - Team smAsh
+ * Abandoned but not Forgotten - Styling & Visual Effects
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-heading: 'Orbitron', -apple-system, sans-serif;
+  --font-subheading: 'Rajdhani', -apple-system, sans-serif;
+  --font-body: 'Space Grotesk', -apple-system, sans-serif;
+  --color-mars: #ef4444;
+  --color-mars-glow: rgba(239, 68, 68, 0.4);
+  --color-moon: #38bdf8;
+  --color-moon-glow: rgba(56, 189, 248, 0.4);
+  --color-cyan-glow: rgba(6, 182, 212, 0.4);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #030712;
+  color: #f3f4f6;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(226, 88, 34, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    linear-gradient(to bottom, #030712, #0b1120);
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Typography styles */
+.font-orbitron {
+  font-family: var(--font-heading);
+}
+
+.font-rajdhani {
+  font-family: var(--font-subheading);
+}
+
+.font-space {
+  font-family: var(--font-body);
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel-glow {
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.12);
+}
+
+/* Holographic Grid Accent */
+.holo-grid {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Pulse Glows */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.8);
+    opacity: 0.85;
+  }
+}
+
+.glow-beacon-moon {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseGlowMars {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
+    opacity: 0.85;
+  }
+}
+
+.glow-beacon-mars {
+  animation: pulseGlowMars 2.5s infinite ease-in-out;
+}
+
+/* Radar Sweep Line Animation for Planet Canvas */
+.radar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 60%, rgba(3, 7, 18, 0.6) 100%);
+}
+
+.radar-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+  animation: scanline 4s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes scanline {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Story Quote Highlight styling */
+.story-quote-box {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+  border-left: 4px solid #38bdf8;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Badge unlock cards */
+.badge-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.badge-card:hover {
+  transform: translateY(-4px);
+}
+.badge-card.unlocked {
+  border-color: rgba(245, 158, 11, 0.6);
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(120, 53, 15, 0.25));
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+}
+
+/* Timeline Track */
+.timeline-stem {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, #38bdf8, #ef4444, #f59e0b);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .timeline-stem {
+    left: 24px;
+  }
+}
+
+/* Model Viewer HUD crosshair */
+.hud-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(56, 189, 248, 0.6);
+  pointer-events: none;
+}
+.hud-corner-tl { top: 12px; left: 12px; border-top: 2px solid; border-left: 2px solid; }
+.hud-corner-tr { top: 12px; right: 12px; border-top: 2px solid; border-right: 2px solid; }
+.hud-corner-bl { bottom: 12px; left: 12px; border-bottom: 2px solid; border-left: 2px solid; }
+.hud-corner-br { bottom: 12px; right: 12px; border-bottom: 2px solid; border-right: 2px solid; }
+
+/* Audio waves animation */
+@keyframes soundWave {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+.wave-bar {
+  display: inline-block;
+  width: 3px;
+  background-color: #38bdf8;
+  border-radius: 2px;
+  animation: soundWave 1.2s infinite ease-in-out;
+}
+.wave-bar:nth-child(2) { animation-delay: 0.2s; }
+.wave-bar:nth-child(3) { animation-delay: 0.4s; }
+.wave-bar:nth-child(4) { animation-delay: 0.1s; }
+
+/* Target Reconnaissance Card Animation */
+@keyframes targetFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#target-recon-card:not(.hidden) {
+  animation: targetFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
